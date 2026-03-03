@@ -111,10 +111,8 @@ class Dolphin:
         # console_kwargs.update(emulation_speed=0)
 
       if version.build is DolphinBuild.EXI_AI:
-        console_kwargs.update(
-            use_exi_inputs=True,
-            enable_ffw=True,
-        )
+        console_kwargs.setdefault('use_exi_inputs', True)
+        console_kwargs.setdefault('enable_ffw', True)
       elif not version.mainline:
         raise ValueError(
             'Headless requires mainline dolphin or a custom dolphin build. '
