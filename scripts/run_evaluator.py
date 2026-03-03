@@ -31,6 +31,7 @@ if __name__ == '__main__':
       'num_env_steps', 0, 'Number of environment steps to batch.')
   INNER_BATCH_SIZE = flags.DEFINE_integer(
       'inner_batch_size', 1, 'Number of environments to run sequentially.')
+  SWAP_PORTS = flags.DEFINE_boolean('swap_ports', True, 'Swap half of env ports.')
 
   USE_GPU = flags.DEFINE_boolean('use_gpu', False, 'Use GPU for inference.')
   NUM_AGENT_STEPS = flags.DEFINE_integer(
@@ -71,7 +72,9 @@ if __name__ == '__main__':
     dolphin_kwargs = dolphin.DolphinConfig.kwargs_from_flags(DOLPHIN.value)
     dolphin_kwargs.update(players=players)
 
-    env_kwargs = {}
+    env_kwargs = dict(
+        swap_ports=SWAP_PORTS.value,
+    )
     if ASYNC_ENVS.value:
       env_kwargs.update(
           num_steps=NUM_ENV_STEPS.value,
