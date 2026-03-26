@@ -13,7 +13,7 @@ from melee.console import (
    get_dolphin_version,
    DumpConfig,
    DolphinBuild,
-   default_dolphin_info,
+   default_dolphin_install_path,
 )
 
 class Player(abc.ABC):
@@ -98,14 +98,8 @@ class Dolphin:
     platform = None
 
     # TODO: some of this logic should be moved to Console
-
-    if path is None:
-      info = default_dolphin_info()
-      path = info.install_dir
-      if iso is None:
-        iso = info.iso_path
-
-    version = get_dolphin_version(path)
+    # Note: leave path as None to tell libmelee to look for the iso/user.json
+    version = get_dolphin_version(path or default_dolphin_install_path()[0])
 
     if render is None:
       render = not headless
