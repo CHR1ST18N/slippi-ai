@@ -45,6 +45,7 @@ dolphin_config = dolphin_lib.DolphinConfig(
     online_delay=2,
     path=os.environ.get('DOLPHIN_PATH'),
     iso=os.environ.get('ISO_PATH'),
+    instant_match_restart=False,
 )
 DOLPHIN = ff.DEFINE_dict(
     'dolphin', **flag_utils.get_flags_from_default(dolphin_config))
