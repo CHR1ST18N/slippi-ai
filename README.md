@@ -25,6 +25,7 @@ A model capable of playing 12 different characters is available [here](https://w
 * Tested with python 3.10 and 3.11.
 * By default phillip sets up human players as using Wii-U controller adapters. If you want to use your own dolphin configuration (including controller config) pass `--dolphin.copy_home_directory`. You still need to specify which player (p1 or p2) is human.
 * On Windows you may need to [enable long paths](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=powershell#registry-setting-to-enable-long-paths) in order for the pip installs to work.
+* On Windows make sure no other dolphin instances are running as it will prevent the bot from sending inputs to the game.
 
 ## Recordings
 
