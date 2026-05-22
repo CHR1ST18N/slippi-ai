@@ -22,39 +22,39 @@ class Player(abc.ABC):
   def controller_type(self) -> melee.ControllerType:
     pass
 
-  @abc.abstractmethod
-  def menuing_kwargs(self) -> Dict:
-    pass
-
-
 class Human(Player):
 
   def controller_type(self) -> melee.ControllerType:
     return melee.ControllerType.GCN_ADAPTER
 
-  def menuing_kwargs(self) -> Dict:
-    return {}
+@dataclasses.dataclass
+class MenuingPlayer(Player):
+  """Base class for CPU and AI players, which need to menu in."""
+
+  character: melee.Character = melee.Character.FOX
+  costume: Optional[int] = None
+
+  def controller_type(self) -> melee.ControllerType:
+    return melee.ControllerType.STANDARD
+
+  def menuing_kwargs(self, index: int) -> Dict:
+    return dict(
+        character_selected=self.character,
+        costume=index if self.costume is None else self.costume,
+    )
 
 @dataclasses.dataclass
-class CPU(Player):
-  character: melee.Character = melee.Character.FOX
+class CPU(MenuingPlayer):
   level: int = 9
 
-  def controller_type(self) -> melee.ControllerType:
-    return melee.ControllerType.STANDARD
-
-  def menuing_kwargs(self) -> Dict:
-    return dict(character_selected=self.character, cpu_level=self.level)
+  def menuing_kwargs(self, index: int) -> Dict:
+    kwargs = super().menuing_kwargs(index)
+    kwargs['cpu_level'] = self.level
+    return kwargs
 
 @dataclasses.dataclass
-class AI(Player):
-  character: melee.Character = melee.Character.FOX
-
-  def controller_type(self) -> melee.ControllerType:
-    return melee.ControllerType.STANDARD
-
-  def menuing_kwargs(self) -> Dict:
-    return dict(character_selected=self.character)
+class AI(MenuingPlayer):
+  pass
 
 def is_menu_state(gamestate: melee.GameState) -> bool:
   return gamestate.menu_state not in [melee.Menu.IN_GAME, melee.Menu.SUDDEN_DEATH]
@@ -248,8 +248,7 @@ class Dolphin:
             connect_code=self._connect_code,
             autostart=self._autostart and i == 0 and menu_frames > 30,
             swag=False,
-            costume=i,
-            **player.menuing_kwargs())
+            **player.menuing_kwargs(i))
 
       gamestate = self.next_gamestate()
       menu_frames += 1
@@ -273,8 +272,7 @@ class Dolphin:
               connect_code=self._connect_code,
               autostart=self._autostart and i == 0 and menu_frames > 180,
               swag=False,
-              costume=i,
-              **player.menuing_kwargs())
+              **player.menuing_kwargs(i))
 
         gamestate = self.next_gamestate()
         menu_frames += 1

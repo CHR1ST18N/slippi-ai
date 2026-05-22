@@ -748,6 +748,7 @@ PLAYER_FLAGS = dict(
         melee.Character.FOX, melee.Character,
         'Character selected by agent or CPU.'),
     level=ff.Integer(9, 'CPU level.'),
+    costume=ff.Integer(None, 'Costume index. Only works online.'),
     ai=AGENT_FLAGS,
 )
 
@@ -767,14 +768,15 @@ def get_player(
     type: str,
     character: melee.Character,
     level: int,
+    costume: tp.Optional[int],
     **_,  # for convenience
 ) -> dolphin.Player:
   if type == 'ai':
-    return dolphin.AI(character)
+    return dolphin.AI(character=character, costume=costume)
   elif type == 'human':
     return dolphin.Human()
   elif type == 'cpu':
-    return dolphin.CPU(character, level)
+    return dolphin.CPU(character=character, costume=costume, level=level)
   raise ValueError(f'Unknown player type: {type}')
 
 def get_single_character(config: dict) -> tp.Optional[melee.Character]:

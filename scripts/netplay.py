@@ -19,6 +19,7 @@ agent_flags['async_inference'] = ff.Boolean(True)
 
 AGENT = ff.DEFINE_dict('agent', **agent_flags)
 CHAR = flags.DEFINE_enum_class('char', melee.Character.FOX, melee.Character, 'Character to use for AI player')
+COSTUME = flags.DEFINE_integer('costume', None, 'Costume index to use for AI player. Only works online.')
 
 dolphin_flags = dolphin_lib.DOLPHIN_FLAGS.copy()
 dolphin_flags.update(
@@ -42,6 +43,7 @@ def main(_):
 
   player = dolphin_lib.AI(
       character=CHAR.value,
+      costume=COSTUME.value
   )
   eval_lib.update_character(player, agent_state['config'])
 
