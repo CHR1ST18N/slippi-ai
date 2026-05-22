@@ -9,7 +9,12 @@ import fancyflags as ff
 import portpicker
 
 import melee
-from melee.console import get_dolphin_version, DumpConfig, DolphinBuild, default_dolphin_install_path
+from melee.console import (
+   get_dolphin_version,
+   DumpConfig,
+   DolphinBuild,
+   default_dolphin_info,
+)
 
 class Player(abc.ABC):
 
@@ -69,8 +74,8 @@ class Dolphin:
 
   def __init__(
       self,
-      path: str,
-      iso: str,
+      path: Optional[str],
+      iso: Optional[str],
       players: Mapping[int, Player],
       stage: melee.Stage = melee.Stage.FINAL_DESTINATION,
       online_delay: int = 0,  # overrides Console's default of 2
@@ -93,7 +98,13 @@ class Dolphin:
     platform = None
 
     # TODO: some of this logic should be moved to Console
-    path = path or default_dolphin_install_path()[0]
+
+    if path is None:
+      info = default_dolphin_info()
+      path = info.install_dir
+      if iso is None:
+        iso = info.iso_path
+
     version = get_dolphin_version(path)
 
     if render is None:
