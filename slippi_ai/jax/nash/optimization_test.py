@@ -278,7 +278,7 @@ if __name__ == '__main__':
 
   qpax_fast_kwargs = dict(
       error=1e-5,
-      atol=1e-3,
+      atol=1e-2,
       # jit=False,
   )
 

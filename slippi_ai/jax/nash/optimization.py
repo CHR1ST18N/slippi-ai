@@ -624,9 +624,8 @@ def solve_optimization_qpax_with_extras(
   A = jax.jacrev(eq_fn)(flat_var)  # [K, N]
   b = A @ flat_var - eq_fn(flat_var)
 
-  solve_qp = qpax.pdip.solve_qp_debug if debug else qpax.pdip.solve_qp
-  x_opt, s, z, y, converged, num_steps = solve_qp(
-      Q, q, A, b, G, h, solver_tol=error, max_iter=max_steps)
+  x_opt, s, z, y, converged, num_steps = qpax.pdip.solve_qp(
+      Q, q, A, b, G, h, solver_tol=error, max_iter=max_steps, debug=debug)
 
   vs = unflatten(x_opt)
   eq = problem.equality_violations(parameters, vs)
