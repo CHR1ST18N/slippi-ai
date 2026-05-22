@@ -22,7 +22,7 @@ jobs:
     # See https://github.com/pypa/pip/issues/11281
     - name: Install
       run: |
-        pip install -r requirements.txt
+        pip install -r jax-requirements.txt
         pip install .[train,tf,jax]
         sudo apt update
         sudo apt install -y zipmerge

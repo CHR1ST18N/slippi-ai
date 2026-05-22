@@ -1,4 +1,4 @@
 -r requirements.txt
 flax>=0.12
-git+https://github.com/vladfi1/qpax.git
+git+https://github.com/vladfi1/qpax.git@dev
 tfp-nightly
