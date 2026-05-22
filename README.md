@@ -13,7 +13,7 @@ Download or `git clone` this repository. From the repository root:
 ```
 pip install -e ".[tf]"
 
-python scripts/eval_two.py --dolphin.iso <path/to/ssbm.iso> --p1.type human --p2.ai.path <path/to/trained/model> [--dolphin.copy_home_directory]
+python scripts/eval_two.py --p1.type human --p2.ai.path <path/to/trained/model> [--dolphin.copy_home_directory]
 
 python scripts/eval_two.py --help  # to get a full list of options
 ```
@@ -21,10 +21,11 @@ python scripts/eval_two.py --help  # to get a full list of options
 A model capable of playing 12 different characters is available [here](https://www.dropbox.com/scl/fi/lpi9krfei1knfvfw7up7v/medium-v2?rlkey=qmah3qfz5anwva93x48zcx01k&st=sxo8hbeb&dl=0). You can change the character by setting `--p2.character <fox/falco/marth/...>`.
 
 #### Notes
-* Tested with python 3.10 and 3.11.
+* Tested with python 3.12 and 3.13.
 * By default phillip sets up human players as using Wii-U controller adapters. If you want to use your own dolphin configuration (including controller config) pass `--dolphin.copy_home_directory`. You still need to specify which player (p1 or p2) is human.
 * On Windows you may need to [enable long paths](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=powershell#registry-setting-to-enable-long-paths) in order for the pip installs to work.
 * On Windows make sure no other dolphin instances are running as it will prevent the bot from sending inputs to the game.
+* The script will try to find slippi dolphin and your melee ISO; if it fails you can manually specify `--dolphin.iso` and `--dolphin.path`.
 
 ## Recordings
 
