@@ -1,20 +1,9 @@
-# Slippi-AI (Phillip II)
-
-This project is the successor to [Phillip](https://github.com/vladfi1/phillip). While the original Phillip used pure deep RL, this one starts with behavioral cloning on slippi replays, which makes it play a lot more like a human. There is a [discord channel](https://discord.gg/hfVTXGu) for discussion/feedback/support.
-
-## Playing the Bot
-
-The bot is available to play via netplay on my [twitch channel](https://twitch.tv/x_pilot). Due to phillip's high delay (18+ frames) and buffer donation, it should feel like playing locally at up to 300ms ping.
-
-### Local Play
-
-Download or `git clone` this repository. From the repository root:
+## Local Play
+From the repository root:
 
 ```
 pip install -e ".[tf]"
-
 python scripts/eval_two.py --p1.type human --p2.ai.path <path/to/trained/model> [--dolphin.copy_home_directory]
-
 python scripts/eval_two.py --help  # to get a full list of options
 ```
 
@@ -27,22 +16,6 @@ A model capable of playing 12 different characters is available [here](https://w
 * On Windows make sure no other dolphin instances are running as it will prevent the bot from sending inputs to the game.
 * The script will try to find slippi dolphin and your melee ISO; if it fails you can manually specify `--dolphin.iso` and `--dolphin.path`.
 
-## Recordings
-
-Phillip has played a number of top players:
-* [Zain 1](https://www.youtube.com/watch?v=c8nRFAGvr2c), [Zain 2](https://www.youtube.com/watch?v=XBHaHlC3_p4)
-* [Amsa + Cody](https://www.youtube.com/watch?v=WGsN7lWBQP)
-* [Moky](https://www.youtube.com/watch?v=1kviVflqXc4)
-* [Aklo](https://www.youtube.com/watch?v=OGOEqhMptq0)
-
-My [youtube channel](https://www.youtube.com/channel/UCzpDWSOtWpDaNPC91dqmPQg) also has some recordings and clips.
-
-## Acknowledgements
-
-* Huge thanks to Fizzi for writing the fast-forward gecko code that significantly speeds up RL training, for providing most of the imitation training data in the form of anonymized ranked collections (link in the Slippi discord), and of course for giving us Slippi in the first place. Even prior to rollback netcode, slippi replays were what rekindled my interest in melee AI, and are what gave name to this repo.
-* Big thanks also to [altf4](https://github.com/altf4) for creating the [libmelee](https://github.com/altf4/libmelee) interface to slippi dolphin, making melee AI development accessible to everyone.
-* Thank you to the many players who have generously shared their replays.
-* Finally, a big thank you to my dad for proving the computing hardware used to train phillip.
 
 # Code Overview
 
