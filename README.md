@@ -23,20 +23,20 @@ Phillip is trained in two stages. In the first stage, it learns to imitate human
 
 ## Creating a Dataset
 
-The first step is preprocess your slippi replays using [`slippi_db/parse_local.py`](https://github.com/vladfi1/slippi-ai/blob/main/slippi_db/parse_local.py). See the documentation in that file for more details.
+The first step is preprocess your slippi replays using [`slippi_db/parse_local.py`](\slippi_db\parse_local.py). See the documentation in that file for more details.
 
-The output of this step will be a `Parsed` directory of preprocessed games and a `meta.json` metadata file.
+The output of this step will be a `Parsed` directory of preprocessed games and a `meta.json` metadata file. ['Folder'](\slippi_ai\data\toy_dataset\Raw) 
 
 ## Imitation Learning
 
-The entry point for imitation learning is [`scripts/train.py`](https://github.com/vladfi1/slippi-ai/blob/main/scripts/train.py). See [`scripts/imitation_example.sh`](https://github.com/vladfi1/slippi-ai/blob/main/scripts/imitation_example.sh) for appropriate arguments.
+The entry point for imitation learning is [`scripts/train.py`](slippi_ai\tf\scripts\train.py). See [`scripts/imitation_example.sh`](slippi_ai\tf\scripts\imitation_example.sh) for appropriate arguments.
 
 Metrics are logged to [wandb](https://wandb.ai/) during training. To use your own wandb account, set the `WANDB_API_KEY` environment variable. The key metric to look at is `eval.policy.loss` -- once this has plateaued you can stop training. On a good GPU (e.g. a 3080Ti), imitation learning should take a few days to a week. The agent checkpoint will be periodically written to `experiments/<tag>/latest.pkl`.
 
 ## Reinforcement Learning
 
-There are two entry points for RL: [`slippi_ai/rl/run.py`](https://github.com/vladfi1/slippi-ai/blob/main/slippi_ai/rl/run.py) for training an agent in the ditto, and [`slippi_ai/rl/train_two.py`](https://github.com/vladfi1/slippi-ai/blob/main/slippi_ai/rl/train_two.py) which trains two agents simultaneously. The arguments are similar for both; see [`scripts/rl_example.sh`](https://github.com/vladfi1/slippi-ai/blob/main/scripts/rl_example.sh) for an example ditto training script.
+There are two entry points for RL: [`slippi_ai/rl/run.py`](slippi_ai/rl/run.py) for training an agent in the ditto, and [`slippi_ai/rl/train_two.py`](slippi_ai/rl/train_two.py) which trains two agents simultaneously. The arguments are similar for both; see [`scripts/rl_example.sh`](scripts/rl_example.sh) for an example ditto training script.
 
 ## Evaluation
 
-To play a trained agent or watch two trained agents play each other, use [`scripts/eval_two.py`](https://github.com/vladfi1/slippi-ai/blob/main/scripts/eval_two.py). To do a full evaluation of two agents against each other, use [`scripts/run_evaluator.py`](https://github.com/vladfi1/slippi-ai/blob/main/scripts/run_evaluator.py).
+To play a trained agent or watch two trained agents play each other, use [`scripts/eval_two.py`](scripts/eval_two.py). To do a full evaluation of two agents against each other, use [`scripts/run_evaluator.py`](main/scripts/run_evaluator.py).
