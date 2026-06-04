@@ -1,3 +1,5 @@
+slippi_ai/data/mario-dataset/Raw/*.zip
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

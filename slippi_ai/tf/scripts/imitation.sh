@@ -3,6 +3,7 @@
 NUM_DAYS=6
 RUNTIME=$(($NUM_DAYS * 24 * 60 * 60))
 
+DATA_ROOT=slippi_ai/data/mario_dataset/
 DATA_DIR="$DATA_ROOT/Parsed"
 META_PATH="$DATA_ROOT/meta.json"
 
