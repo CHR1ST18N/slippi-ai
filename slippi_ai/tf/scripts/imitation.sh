@@ -10,7 +10,7 @@ META_PATH="$DATA_ROOT/meta.json"
 DELAY="18"
 CHAR="mario"
 
-python scripts/train.py \
+python3.13 scripts/train.py \
   --wandb.mode=online \
   --config.tag=${CHAR}_delay_${DELAY} \
   --config.policy.delay=$DELAY \
