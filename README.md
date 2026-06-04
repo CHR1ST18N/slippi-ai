@@ -25,7 +25,7 @@ Phillip is trained in two stages. In the first stage, it learns to imitate human
 
 ## Creating a Dataset
 
-The first step is preprocess your slippi replays using [`slippi_db/parse_local.py`](\slippi_db\parse_local.py). See the documentation in that file for more details.
+The first step is preprocess your slippi replays using [`slippi_db/parse_local.py`](\slippi_db\parse_local.py). See the documentation in that file for more details. (not fully supported in Native Windows. Use WSL)
 
 The output of this step will be a `Parsed` directory of preprocessed games and a `meta.json` metadata file. ['Folder'](\slippi_ai\data\toy_dataset\Raw) 
 
