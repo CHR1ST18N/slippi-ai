@@ -3,8 +3,8 @@ From the repository root:
 
 ```
 pip install -e ".[tf]"
-python scripts/eval_two.py --p1.type human --p2.ai.path <path/to/trained/model> --dolphin.copy_home_directory
-python scripts/eval_two.py --help  # to get a full list of options
+py -3.13 (NOT 3.13.13) scripts/eval_two.py --p1.type human --p2.ai.path <path/to/trained/model> --dolphin.copy_home_directory
+py 3.13 (NOT 3.13.13) scripts/eval_two.py --help  # to get a full list of options
 ```
 
 A model capable of playing 12 different characters is available [here](https://www.dropbox.com/scl/fi/lpi9krfei1knfvfw7up7v/medium-v2?rlkey=qmah3qfz5anwva93x48zcx01k&st=sxo8hbeb&dl=0). You can change the character by setting `--p2.character <fox/falco/marth/...>`.
