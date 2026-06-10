@@ -32,6 +32,7 @@ The output of this step will be a `Parsed` directory of preprocessed games and a
 ## Imitation Learning
 
 The entry point for imitation learning is [`scripts/train.py`](slippi_ai\tf\scripts\train.py). See [`scripts/imitation_example.sh`](slippi_ai\tf\scripts\imitation_example.sh) for appropriate arguments.
+- Basically run [slippi_ai\tf\scripts\mario_train.sh](slippi_ai\tf\scripts\mario_train.sh) on WSL
 
 Metrics are logged to [wandb](https://wandb.ai/) during training. To use your own wandb account, set the `WANDB_API_KEY` environment variable. The key metric to look at is `eval.policy.loss` -- once this has plateaued you can stop training. On a good GPU (e.g. a 3080Ti), imitation learning should take a few days to a week. The agent checkpoint will be periodically written to `experiments/<tag>/latest.pkl`.
 

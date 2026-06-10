@@ -1,16 +1,16 @@
 #!/usr/bin/env sh
 
-NUM_DAYS=6
-RUNTIME=$(($NUM_DAYS * 24 * 60 * 60))
-
-DATA_ROOT=slippi_ai/data/mario_dataset/
-DATA_DIR="$DATA_ROOT/Parsed"
-META_PATH="$DATA_ROOT/meta.json"
-
+# NUM_DAYS=6
+# RUNTIME=$(($NUM_DAYS * 24 * 60 * 60))
+#   --config.runtime.max_runtime=$RUNTIME \
 DELAY="18"
 CHAR="mario"
 
-python3.13 scripts/train.py \
+DATA_ROOT=slippi_ai/data/mario_dataset
+DATA_DIR="$DATA_ROOT/Parsed"
+META_PATH="$DATA_ROOT/meta.json"
+
+python3.13 slippi_ai/tf/scripts/train.py \
   --wandb.mode=online \
   --config.tag=${CHAR}_delay_${DELAY} \
   --config.policy.delay=$DELAY \
@@ -38,7 +38,6 @@ python3.13 scripts/train.py \
   --config.dataset.meta_path=$META_PATH \
   --config.runtime.eval_every_n=5000 \
   --config.runtime.num_eval_steps=200 \
-  --config.runtime.max_runtime=$RUNTIME \
   --config.runtime.log_interval=300 \
   --config.runtime.save_interval=600 \
   "$@"
